@@ -1,6 +1,8 @@
 package com.devpredator.practicajsf.entity;
 
-public class Gerente {
+import java.io.Serializable;
+
+public class Gerente implements Serializable{
 	private String nombre;
 	private String primerApellido;
 	private String segundoApellido;

@@ -1,5 +1,6 @@
 package com.devpredator.practicajsf.controllers;
 
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,12 +12,18 @@ import com.devpredator.practicajsf.services.RestauranteService;
 
 @ManagedBean
 @ViewScoped
-public class RestauranteController {
+public class RestauranteController{
 	
+	/**
+	 * 
+	 */
+
+
 	private RestauranteService restauranteService= new RestauranteService();
 	
 	private List<Restaurante> resturantes;
 	
+	private List<Restaurante> restaurantesFiltrados;
 
 	public RestauranteController() {
 	}
@@ -37,6 +44,20 @@ public class RestauranteController {
 
 	public void setResturantes(List<Restaurante> resturantes) {
 		this.resturantes = resturantes;
+	}
+
+	/**
+	 * @return the restaurantesFiltrados
+	 */
+	public List<Restaurante> getRestaurantesFiltrados() {
+		return restaurantesFiltrados;
+	}
+
+	/**
+	 * @param restaurantesFiltrados the restaurantesFiltrados to set
+	 */
+	public void setRestaurantesFiltrados(List<Restaurante> restaurantesFiltrados) {
+		this.restaurantesFiltrados = restaurantesFiltrados;
 	}
 
 

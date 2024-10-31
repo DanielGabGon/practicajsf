@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Pantalla Restaurantes</title>
@@ -10,30 +11,86 @@
 <h:body>
 
 	<!-- ::::::::::::: AGREGA AQUI LA TABLA DE RESTAURANTES ::::::::::::::::::: -->
+  <h:form>
+  		<div  class="flex justify-content-between" style="align-content: center;">
+				<div class="ui-g-12 ui-md-6">
+					<h5>Exportar</h5>
+					<p:commandButton value="XLS" styleClass="mr-2 mb-2">
+						<p:dataExporter type="xls" target="tblRestaurantes"
+							fileName="restaurantes" />
+					</p:commandButton>
+					<p:commandButton value="XLSX" styleClass="mr-2 mb-2">
+						<p:dataExporter type="xlsxstream" target="tblRestaurantes"
+							fileName="restaurantes" />
+					</p:commandButton>
+					<p:commandButton value="PDF" styleClass="mr-2 mb-2">
+						<p:dataExporter type="pdf" target="tblRestaurantes"
+							fileName="restaurantes" />
+					</p:commandButton>
+					<p:commandButton value="CSV" styleClass="mr-2 mb-2">
+						<p:dataExporter type="csv" target="tblRestaurantes" fileName="restaurantes" />
+					</p:commandButton>
 
-	<h:dataTable headerClass="headerTable"
-		rowClasses="rowTable rowTableLine" id="tblRestaurantes"
-		var="restaurante" value="#{restauranteController.resturantes}">
-		<h:column>
-			<f:facet name="header">Nombre</f:facet>
+					<p:commandButton value="XML" styleClass="mr-2 mb-2">
+						<p:dataExporter type="xml" target="tblRestaurantes" fileName="restaurantes" />
+					</p:commandButton>
+				</div>
+				<div class="ui-g-12 ui-md-6">
+					<h5>Exportar</h5>
+					<p:commandButton value="XLS"
+						styleClass="mr-2 mb-2 ui-button-outlined">
+						<p:dataExporter type="xls" target="tblRestaurantes"
+							fileName="restaurantes" pageOnly="true" />
+					</p:commandButton>
+					<p:commandButton value="XLSX"
+						styleClass="mr-2 mb-2 ui-button-outlined">
+						<p:dataExporter type="xlsxstream" target="tblRestaurantes"
+							fileName="restaurantes" pageOnly="true" />
+					</p:commandButton>
+					<p:commandButton value="PDF"
+						styleClass="mr-2 mb-2 ui-button-outlined">
+						<p:dataExporter type="pdf" target="tblRestaurantes"
+							fileName="restaurantes" pageOnly="true" />
+					</p:commandButton>
+					<p:commandButton value="CSV"
+						styleClass="mr-2 mb-2 ui-button-outlined">
+						<p:dataExporter type="csv" target="tblRestaurantes"
+							fileName="restaurantes" pageOnly="true" />
+					</p:commandButton>
+					<p:commandButton value="XML"
+						styleClass="mr-2 mb-2 ui-button-outlined">
+						<p:dataExporter type="xml" target="tblRestaurantes"
+							fileName="restaurantes" pageOnly="true" />
+					</p:commandButton>
+				</div>
+			</div>	
+	<p:dataTable  id="tblRestaurantes"
+		var="restaurante" value="#{restauranteController.resturantes}"
+		rows="10" paginator="true"
+				paginatorPosition="both"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
+				rowsPerPageTemplate="5,10,{ShowAll|'All'}"
+				emptyMessage="No se encontraron registros"
+				filteredValue="#{restauranteController.restaurantesFiltrados}" reflow="true">
+		<p:column headerText="Nombre" filterBy="#{restaurante.nombre}"
+					filterMatchMode="contains" sortBy="#{restaurante.nombre}">
 			<h:outputText value="#{restaurante.nombre}"></h:outputText>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Dirección</f:facet>
-			<h:outputText value="#{restaurante.direccion}"></h:outputText>
-		</h:column>
-		<h:column>
-		   <f:facet name="País"></f:facet>
-		   <h:outputText value="#{restaurante.pais}"></h:outputText>
-		</h:column>
-		<h:column>
-		   <f:facet name="Gerente"></f:facet>
-		   <h:outputText value="#{restaurante.gerente.nombre} #{restaurante.gerente.primerApellido} #{restaurante.gerente.segundoApellido}"></h:outputText>
-		</h:column>
-
-	</h:dataTable>
-
-
+		</p:column>
+		<p:column headerText="Dirección" filterBy="#{restaurante.direccion}"
+					filterMatchMode="contains" sortBy="#{restaurante.direccion}">
+			<p:outputLabel value="#{restaurante.direccion}"></p:outputLabel>
+		</p:column>
+		<p:column headerText="País" filterBy="#{restaurante.pais}"
+					filterMatchMode="contains" sortBy="#{restaurante.pais}">
+		   <p:outputLabel value="#{restaurante.pais}"></p:outputLabel>
+		</p:column>
+		<p:column headerText="Gerente" filterBy="#{restaurante.gerente.nombre}#{restaurante.gerente.primerApellido} #{restaurante.gerente.segundoApellido}"
+					filterMatchMode="contains" sortBy="#{restaurante.gerente.nombre}#{restaurante.gerente.primerApellido} #{restaurante.gerente.segundoApellido}">
+		   <p:outputLabel value="#{restaurante.gerente.nombre} #{restaurante.gerente.primerApellido} #{restaurante.gerente.segundoApellido}"></p:outputLabel>
+		</p:column>
+	</p:dataTable>
+</h:form>
 </h:body>
 
 </html>

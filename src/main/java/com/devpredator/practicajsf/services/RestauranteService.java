@@ -52,6 +52,14 @@ public class RestauranteService {
 		Gerente gerente5 = new Gerente("Maria","Mendoza","Gutierrez");
 		restaurante5.setGerente(gerente5);
 		listaRestaurantes.add(restaurante5);
+		
+		Restaurante restaurante6 = new Restaurante();
+		restaurante6.setNombre("La casa del gran Pozole");
+		restaurante6.setDireccion("Calle plato hondo, esquina la tostada");
+		restaurante6.setPais("Veracruz");
+		Gerente gerente6 = new Gerente("Monica","Noguera","Alfonsina");
+		restaurante6.setGerente(gerente6);
+		listaRestaurantes.add(restaurante6);
 	
 		return listaRestaurantes;
 	}
